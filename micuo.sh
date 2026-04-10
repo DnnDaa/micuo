@@ -26,16 +26,16 @@ if [ -z "$LATEST_URL" ]; then
     exit 1
 fi
 
-# 3. 下载并解压
+# 3. 下载并解压 (使用 gzip)
 echo "正在下载: $LATEST_URL"
-curl -L -o mihomo.tar.gz "$LATEST_URL"
-mkdir -p ./mihomo_temp
-tar -xzf mihomo.tar.gz -C ./mihomo_temp
+# 直接下载并解压到 /usr/local/bin/mihomo
+curl -L "$LATEST_URL" | gunzip > /usr/local/bin/mihomo
 
-# 移动二进制文件
-mv ./mihomo_temp/mihomo-linux-$PLATFORM* /usr/local/bin/mihomo
+# 赋予执行权限
 chmod +x /usr/local/bin/mihomo
-rm -rf mihomo.tar.gz ./mihomo_temp
+
+# 清理可能残余的临时文件（如果有的话）
+rm -f mihomo.tar.gz
 echo "程序已安装至 /usr/local/bin/mihomo"
 
 # 4. 创建配置目录和基础配置文件
