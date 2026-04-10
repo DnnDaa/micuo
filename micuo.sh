@@ -78,3 +78,4 @@ systemctl start mihomo
 echo "--- 安装完成 ---"
 echo "状态: $(systemctl is-active mihomo)"
 echo "配置文件: /etc/mihomo/config.yaml"
+echo "修改完配置后运行systemctl restart mihomo"
