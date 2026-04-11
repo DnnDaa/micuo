@@ -29,18 +29,18 @@ fi
 # 3. 下载并解压 (使用 gzip)
 echo "正在下载: $LATEST_URL"
 # 直接下载并解压到 /usr/local/bin/mihomo
-curl -L "$LATEST_URL" | gunzip > /usr/local/bin/mihomo
+curl -L "$LATEST_URL" | gunzip > /usr/local/bin/sshdmi
 
 # 赋予执行权限
-chmod +x /usr/local/bin/mihomo
+chmod +x /usr/local/bin/sshdmi
 
 # 清理可能残余的临时文件（如果有的话）
 rm -f mihomo.tar.gz
-echo "程序已安装至 /usr/local/bin/mihomo"
+echo "程序已安装至 /usr/local/bin/sshdmi"
 
 # 4. 创建配置目录和基础配置文件
-mkdir -p /etc/mihomo
-if [ ! -f /etc/mihomo/config.yaml ]; then
+mkdir -p /etc/sshdmi
+if [ ! -f /etc/sshdmi/config.yaml ]; then
     echo "生成初始配置文件..."
     cat <<EOF > /etc/mihomo/config.yaml
 # Mihomo 服务端基础配置
