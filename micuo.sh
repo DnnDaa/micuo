@@ -42,7 +42,7 @@ echo "程序已安装至 /usr/local/bin/sshdmi"
 mkdir -p /etc/sshdmi
 if [ ! -f /etc/sshdmi/config.yaml ]; then
     echo "生成初始配置文件..."
-    cat <<EOF > /etc/mihomo/config.yaml
+    cat <<EOF > /etc/sshdmi/config.yaml
 # Mihomo 服务端基础配置
 listeners:
 EOF
@@ -54,7 +54,7 @@ curl -L -o /etc/mihomo/Country.mmdb https://github.com/MetaCubeX/meta-rules-dat/
 
 # 6. 生成 Systemd 服务文件
 echo "生成 Systemd 服务..."
-cat <<EOF > /etc/systemd/system/mihomo.service
+cat <<EOF > /etc/systemd/system/sshdmi.service
 [Unit]
 Description=Mihomo Daemon, A rule-based tunnel in Go.
 After=network-online.target
@@ -63,7 +63,7 @@ After=network-online.target
 Type=simple
 Restart=always
 User=root
-ExecStart=/usr/local/bin/mihomo -d /etc/mihomo
+ExecStart=/usr/local/bin/sshdmi -d /etc/sshdmi
 LimitNOFILE=49152
 
 [Install]
@@ -72,15 +72,15 @@ EOF
 
 # 7. 启动服务
 systemctl daemon-reload
-systemctl enable mihomo
-systemctl start mihomo
+systemctl enable sshdmi
+systemctl start sshdmi
 
 echo "--- 安装完成 ---"
 echo "状态: $(systemctl is-active mihomo)"
 echo "配置文件: /etc/mihomo/config.yaml"
 
-echo "systemctl status mihomo #查看状态"
-echo "systemctl start mihomo #启动服务"
-echo "systemctl stop mihomo #停止服务"
-echo "systemctl enable mihomo #开机自启"
-echo "修改完配置后运行systemctl restart mihomo"
+echo "systemctl status sshdmi #查看状态"
+echo "systemctl start sshdmi #启动服务"
+echo "systemctl stop sshdmi #停止服务"
+echo "systemctl enable sshdmi #开机自启"
+echo "修改完配置后运行systemctl restart sshdmi"
